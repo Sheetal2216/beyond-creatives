@@ -22,14 +22,16 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative w-full min-h-screen bg-black flex flex-col md:flex-row overflow-hidden">
+    <section id="hero" className="relative w-full min-h-screen bg-black flex flex-col md:flex-row overflow-hidden">
       
       {/* 1. LEFT SIDE: CONTENT AREA (50%) */}
       <motion.div 
         variants={containerVars}
         initial="hidden"
         animate="visible"
-        className="w-full md:w-1/2 flex items-center px-6 md:px-16 lg:px-24 py-20 z-20 bg-black"
+        className="relative w-full md:w-1/2 flex items-start md:items-center
+ px-6 md:px-16 lg:px-24 pt-32 md:py-20 z-20 bg-black"
+
       >
         <div className="w-full">
           {/* TAGLINE - POSCA ORANGE */}
@@ -39,18 +41,54 @@ export default function Hero() {
           >
             Elevating Brands That Dare to Stand Out
           </motion.p>
+          {/* MOBILE BACKGROUND IMAGE (ONLY ON PHONE) */}
+<div className="absolute inset-0 md:hidden -z-10">
+  <img
+    src={HeroImage}
+    alt="Mobile Background"
+    className="w-full h-full object-cover blur-sm brightness-[0.35]"
+  />
+</div>
+
 
           {/* MAIN HEADLINE - ULTRA BOLD & MASKED STROKE */}
-          <motion.h1 
-            variants={textItemVars}
-            className="text-5xl md:text-7xl lg:text-[100px] font-black uppercase leading-[0.85] tracking-tighter text-white mb-8"
-          >
+          <motion.h1
+  variants={textItemVars}
+  className="
+    text-5xl 
+    md:text-7xl 
+    lg:text-[100px] 
+    font-black 
+    uppercase 
+    leading-[1.08] md:leading-[0.9] lg:leading-[0.85]
+    tracking-tighter 
+    text-white 
+    mb-8
+  "
+>
             We Craft <br />
             <span className="text-[#FF8A00]">Visuals</span> <br />
             That Make You <br />
-            <span className="text-transparent" style={{ WebkitTextStroke: '1.5px #FF8A00' }}>
-              Unforgettable
-            </span>
+ <span
+  className="
+    block
+    text-transparent
+    font-black
+    tracking-tighter
+    text-4xl
+    sm:text-5xl
+    md:text-7xl
+    lg:text-[100px]
+    text-[#FF8A00]
+  "
+  style={{ WebkitTextStroke: "1.5px #FF8A00" }}
+>
+  Unforgettable
+</span>
+
+
+
+
           </motion.h1>
 
           {/* SUBLINE - BOLD LEFT BORDER */}
@@ -64,20 +102,26 @@ export default function Hero() {
 
           {/* CTA BUTTON */}
           <motion.div variants={textItemVars}>
-            <motion.a
-              href="#"
-              whileHover={{ scale: 1.05, backgroundColor: "#FFFFFF" }}
-              whileTap={{ scale: 0.95 }}
-              className="relative inline-flex items-center justify-center px-12 py-5 font-black text-black transition-colors duration-300 bg-[#FF8A00] rounded-none group overflow-hidden"
-            >
-              <span className="relative uppercase tracking-widest text-sm">Book a Discovery Call</span>
-            </motion.a>
+           <motion.a
+  href="https://forms.gle/2XYpqYUAVyP5eqcF6"
+  target="_blank"
+  rel="noopener noreferrer"
+  whileHover={{ scale: 1.05, backgroundColor: "#FFFFFF" }}
+  whileTap={{ scale: 0.95 }}
+  className="relative inline-flex items-center justify-center px-12 py-5 font-black text-black transition-colors duration-300 bg-[#FF8A00] rounded-none group overflow-hidden"
+>
+  <span className="relative uppercase tracking-widest text-sm">
+    Book a Discovery Call
+  </span>
+</motion.a>
+
           </motion.div>
         </div>
       </motion.div>
 
       {/* 2. RIGHT SIDE: IMAGE AREA (50%) */}
-      <div className="relative w-full md:w-1/2 h-[50vh] md:min-h-screen overflow-hidden">
+     <div className="hidden md:block relative w-full md:w-1/2 h-[50vh] md:min-h-screen overflow-hidden">
+
         {/* Animated Image Reveal */}
         <motion.div
           initial={{ clipPath: "inset(0 0 0 100%)" }}

@@ -5,7 +5,7 @@ export default function CTA() {
   return (
     <section
       id="connect"
-      className="w-full bg-black px-6 md:px-12 py-32 relative overflow-hidden"
+      className="w-full bg-black px-6 md:px-12 py-10 relative overflow-hidden"
     >
       {/* Subtle grain */}
       <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
@@ -36,19 +36,22 @@ export default function CTA() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
 
           {/* Primary CTA */}
-          <motion.a
-            whileHover={{ scale: 1.05 }}
-            href="#"
-            className="bg-[#FF8A00] text-black px-12 py-4 rounded-full
-                       text-sm font-black uppercase tracking-widest
-                       transition-transform"
-          >
-            Connect with us
-          </motion.a>
+         <motion.a
+  href="https://forms.gle/2XYpqYUAVyP5eqcF6"
+  target="_blank"
+  rel="noopener noreferrer"
+  whileHover={{ scale: 1.05 }}
+  className="bg-[#FF8A00] text-black px-12 py-4 rounded-full
+             text-sm font-black uppercase tracking-widest
+             transition-transform"
+>
+  Connect with us
+</motion.a>
+
 
           {/* Secondary CTA */}
           <a
-            href="#services"
+            href="#worked-with"
             className="text-white/70 uppercase text-xs tracking-[0.3em]
                        hover:text-white transition-colors"
           >

@@ -26,7 +26,7 @@ export default function Footer() {
             </p>
             <ul className="space-y-3 text-gray-400 text-sm">
               <li>
-                <a href="#home" className="hover:text-white transition">
+                <a href="#hero" className="hover:text-white transition">
                   Home
                 </a>
               </li>
@@ -51,12 +51,7 @@ export default function Footer() {
             <p className="text-gray-400 text-sm mb-2">
               Melbourne · Australia
             </p>
-            <a
-              href="mailto:hello@beyondcreatives.com"
-              className="text-[#FF8A00] text-sm font-bold hover:underline"
-            >
-              hello@beyondcreatives.com
-            </a>
+            
           </div>
 
         </div>

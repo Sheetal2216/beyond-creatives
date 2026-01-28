@@ -1,126 +1,218 @@
 import React, { useEffect, useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import StatsVideo from "../assets/stats/stats-video.mp4";
 
+
+// ICONS
+import I1 from "../assets/stats/stats-1.png";
+import I2 from "../assets/stats/stats-2.png";
+import I3 from "../assets/stats/stats-3.png";
+import I4 from "../assets/stats/stats-4.png";
+
+/* =======================
+   STATS DATA
+======================= */
 const stats = [
-  { value: 3000000000, label: "Total Views Generated", suffix: "+", icon: "👁️" },
-  { value: 15000000, label: "Community Reach", suffix: "+", icon: "👥" },
-  { value: 110000000, label: "Instagram Views / 28d", suffix: "+", icon: "📸" },
-  { value: 60000000, label: "YouTube Views / 28d", suffix: "+", icon: "▶️" },
+  {
+    value: 3000000000,
+    label: "Total Views Generated",
+    suffix: "+",
+    icon: I1,
+  },
+  {
+    value: 15000000,
+    label: "Community Reach",
+    suffix: "+",
+    icon: I2,
+  },
+  {
+    value: 110000000,
+    label: "Instagram Views / 28 Days",
+    suffix: "+",
+    icon: I3,
+  },
+  {
+    value: 60000000,
+    label: "YouTube Views / 28 Days",
+    suffix: "+",
+    icon: I4,
+  },
 ];
 
+/* =======================
+   COUNT UP COMPONENT
+======================= */
 function CountUp({ end, suffix }) {
   const [count, setCount] = useState(0);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
-    if (isInView) {
-      let startTime;
-      const duration = 2000; 
-      const animate = (timestamp) => {
-        if (!startTime) startTime = timestamp;
-        const progress = Math.min((timestamp - startTime) / duration, 1);
-        const easeOutExpo = 1 - Math.pow(2, -10 * progress);
-        setCount(Math.floor(easeOutExpo * end));
-        if (progress < 1) requestAnimationFrame(animate);
-      };
-      requestAnimationFrame(animate);
-    }
+    if (!isInView) return;
+
+    let startTime = null;
+    const duration = 2000;
+
+    const animate = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const progress = Math.min((timestamp - startTime) / duration, 1);
+      const eased = 1 - Math.pow(2, -10 * progress);
+      setCount(Math.floor(eased * end));
+      if (progress < 1) requestAnimationFrame(animate);
+    };
+
+    requestAnimationFrame(animate);
   }, [end, isInView]);
 
   return (
     <span ref={ref}>
-      {Intl.NumberFormat("en", { notation: "compact", maximumFractionDigits: 1 }).format(count)}
+      {Intl.NumberFormat("en", {
+        notation: "compact",
+        maximumFractionDigits: 1,
+      }).format(count)}
       {suffix}
     </span>
   );
 }
 
+/* =======================
+   MAIN COMPONENT
+======================= */
 export default function Stats() {
   return (
-    <section className="bg-black py-32 px-6 md:px-12 relative overflow-hidden">
-      
-      {/* Background Grain Texture */}
+    <section id="stats"  className="bg-black py-16 px-6 md:px-12 relative overflow-hidden">
+
+      {/* Grain Texture */}
       <div className="absolute inset-0 z-0 opacity-[0.05] pointer-events-none bg-[url('https://grainy-gradients.vercel.app/noise.svg')]"></div>
 
       <div className="max-w-7xl mx-auto relative z-10">
 
-        {/* SECTION HEADER */}
-        <div className="max-w-4xl mb-24">
-          <motion.p 
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            className="uppercase tracking-[0.6em] text-[#FF8A00] text-xs font-black mb-6"
-          >
-            Creative Impact [2026]
-          </motion.p>
+        {/* TAGLINE */}
+        <motion.p
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          className="uppercase tracking-[0.6em] text-[#FF8A00] text-xs font-black mb-10"
+        >
+          Measurable Creativity
+        </motion.p>
 
-        {/* STATS HEADER */}
-<div className="max-w-3xl mb-20">
- 
+        {/* HEADER + IMAGE */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
 
-  {/* MAIN HEADLINE */}
-  <h2 className="text-4xl sm:text-5xl md:text-6xl font-black uppercase text-white leading-tight tracking-tight mb-6">
-    Numbers that prove{" "}
-    <span
-      className="text-transparent"
-      style={{ WebkitTextStroke: "2px #FF8A00" }}
+          {/* LEFT IMAGE */}
+         <motion.div
+  initial={{ opacity: 0, x: -40 }}
+  whileInView={{ opacity: 1, x: 0 }}
+  viewport={{ once: true }}
+  className="hidden lg:flex justify-start relative"
+>
+ <video
+  src={StatsVideo}
+  autoPlay
+  loop
+  muted
+  playsInline
+  className="w-[580px] xl:w-[580px] opacity-90 relative z-10 rounded-2xl
+             [mask-image:radial-gradient(circle,white_60%,transparent_100%)]
+             [-webkit-mask-image:radial-gradient(circle,white_60%,transparent_100%)]"
+/>
+
+
+  <div className="absolute -left-10 top-1/2 -translate-y-1/2 w-40 h-40 bg-[#FF8A00]/20 blur-[120px]" />
+</motion.div>
+
+
+          {/* RIGHT TEXT */}
+          <div>
+            <h2 className="text-5xl sm:text-6xl md:text-[84px] font-black uppercase text-white leading-[0.9] tracking-tighter mb-8">
+              Numbers that prove
+              <br />
+              <span
+                className="text-transparent"
+                style={{ WebkitTextStroke: "2px #FF8A00" }}
+              >
+                our impact
+              </span>
+            </h2>
+
+            <p className="text-gray-400 text-lg leading-relaxed max-w-xl">
+              Every metric reflects real attention, real engagement, and real
+              growth — built through strategy, creativity, and execution.
+            </p>
+          </div>
+        </div>
+
+        {/* DIVIDER */}
+        <div className="w-full h-[2px] bg-[#FF8A00]/40 mb-15 relative">
+          <div className="absolute right-0 top-1/2 w-4 h-4 bg-[#FF8A00] rotate-45 -translate-y-1/2"></div>
+        </div>
+
+       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+  {stats.map((stat, i) => (
+    <motion.div
+      key={i}
+      initial={{ opacity: 0, scale: 0.95 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      whileHover={{ y: -4 }}
+      viewport={{ once: true }}
+      className="group relative p-5 bg-white overflow-hidden
+                 border-l-4 border-t-4 border-[#FF8A00]/20
+                 hover:border-[#FF8A00] transition-all"
     >
-      our impact
-    </span>
-  </h2>
+      {/* Hover Glow */}
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100
+                      transition-opacity duration-500
+                      bg-gradient-to-br from-[#FF8A00]/12 to-transparent" />
 
-  {/* SUBLINE */}
-  <p className="text-gray-400 text-lg leading-relaxed">
-    Every metric reflects real attention, real engagement, and real growth —
-    built through strategy, creativity, and execution.
-  </p>
+      {/* Corner Bracket */}
+      <div className="absolute bottom-3 right-3 w-5 h-5
+                      border-r-2 border-b-2 border-[#FF8A00]/40" />
+
+      <div className="relative z-10">
+
+        {/* ICON */}
+        <div className="relative w-[120px] h-[120px] mb-4 flex items-center justify-center">
+          {/* SMALL FIXED GLOW */}
+          <div className="absolute w-8 h-8 bg-[#FF8A00]/35 blur-md rounded-full"></div>
+
+          {/* ICON IMAGE */}
+          <img
+            src={stat.icon}
+            alt={stat.label}
+            className="relative z-10 w-[120px] h-[120px] object-contain"
+          />
+        </div>
+
+        {/* NUMBER */}
+        <h3 className="text-4xl font-black text-black mb-1 tracking-tighter">
+          <CountUp end={stat.value} suffix={stat.suffix} />
+        </h3>
+
+        {/* LINE */}
+        <div className="relative h-[2px] w-12 bg-[#FF8A00]/40 mb-2 overflow-hidden">
+          <span className="absolute left-0 top-0 h-full w-0 bg-[#FF8A00]
+                           group-hover:w-full transition-all duration-500" />
+        </div>
+
+        {/* LABEL */}
+        <p className="text-gray-500 font-bold uppercase tracking-widest text-[9px]
+                      group-hover:text-white transition-colors">
+          {stat.label}
+        </p>
+
+      </div>
+    </motion.div>
+  ))}
 </div>
 
 
 
-
-          <div className="w-full h-[2px] bg-[#FF8A00] mb-8 relative">
-             <div className="absolute top-0 right-0 w-4 h-4 bg-[#FF8A00] -translate-y-1/2 rotate-45" />
-          </div>
-        </div>
-
-        {/* STATS GRID WITH CUSTOM BORDERS */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {stats.map((stat, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              whileHover={{ y: -5 }}
-              viewport={{ once: true }}
-              className="group relative p-10 bg-black overflow-hidden transition-all duration-300 border-l-4 border-t-4 border-[#FF8A00]/20 hover:border-[#FF8A00]"
-            >
-              {/* POSCA HOVER GLOW */}
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-[#FF8A00]/20 to-transparent z-0" />
-
-              {/* CARD DECORATION: BRACKETS */}
-              <div className="absolute bottom-4 right-4 w-8 h-8 border-r-2 border-b-2 border-[#FF8A00] opacity-30 group-hover:opacity-100 transition-opacity" />
-
-              <div className="relative z-10">
-                <div className="text-3xl mb-8 grayscale group-hover:grayscale-0 transition-all flex justify-between items-center">
-                    {stat.icon}
-                    <span className="text-[10px] font-mono text-[#FF8A00] opacity-0 group-hover:opacity-100 uppercase tracking-widest">Live_Data</span>
-                </div>
-                
-                <h3 className="text-5xl font-black text-white mb-2 tracking-tighter">
-                  <CountUp end={stat.value} suffix={stat.suffix} />
-                </h3>
-                
-                {/* ORANGE LINE UNDER NUMBER */}
-                <div className="w-12 h-1 bg-[#FF8A00] mb-4 group-hover:w-full transition-all duration-500" />
-                
-                <p className="text-gray-500 font-bold uppercase tracking-widest text-[10px] group-hover:text-white transition-colors">
-                  {stat.label}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+        {/* FOOT NOTE */}
+        <div className="mt-24 text-center">
+          <p className="text-gray-500 text-xs uppercase tracking-[0.4em]">
+            Real metrics · Real attention · Real growth
+          </p>
         </div>
 
       </div>

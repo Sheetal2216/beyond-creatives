@@ -1,6 +1,15 @@
 import React from "react";
-import Home from "./pages/Home";
+import { useState } from "react";
+import Preloader from "./components/Preloader";
+import Home from "./Pages/Home";
 
 export default function App() {
-  return <Home />;
+  const [loading, setLoading] = useState(true);
+
+  return (
+    <>
+      {loading && <Preloader onFinish={() => setLoading(false)} />}
+      {!loading && <Home />}
+    </>
+  );
 }
