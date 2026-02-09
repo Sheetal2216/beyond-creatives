@@ -11,7 +11,7 @@ export default function Footer() {
           {/* BRAND */}
           <div>
             <h3 className="text-white font-black uppercase tracking-tight text-xl mb-4">
-              Beyond <span className="text-[#FF8A00]">Creatives</span>
+              Beyond <span className="text-[#FF8A00]">Creative</span>
             </h3>
             <p className="text-gray-400 text-sm leading-relaxed max-w-xs">
               A creative studio helping brands attract attention, build presence,
@@ -59,7 +59,7 @@ export default function Footer() {
         {/* BOTTOM FOOTER */}
         <div className="border-t border-white/10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-gray-500 text-xs">
           <p>
-            © {new Date().getFullYear()} Beyond Creatives. All rights reserved.
+            © {new Date().getFullYear()} Beyond Creative. All rights reserved.
           </p>
 
           <p className="uppercase tracking-[0.25em]">

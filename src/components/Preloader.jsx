@@ -88,7 +88,7 @@ export default function Preloader({ onFinish }) {
             transition={{ delay: 1.4, duration: 1 }}
             className="text-[#FF8A00] text-xl md:text-2xl font-black uppercase tracking-[1em] ml-[1em]"
           >
-            CREATIVES
+            CREATIVE
           </motion.h2>
           
           {/* Futuristic Scanning Line */}

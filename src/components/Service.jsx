@@ -20,7 +20,7 @@ const services = [
   { id: "04", title: "Content Shoot", desc: "Professional production tailored to your vision.", sticker: "LIVE", img: S4 },
   { id: "05", title: "3D & Animation", desc: "Dynamic motion that brings stories to life.", sticker: "3D", img: S5 },
   { id: "06", title: "Web Development", desc: "High-performance digital experiences.", sticker: "UX", img: S6 },
-  { id: "07", title: "P    erformance Marketing", desc: "Data-driven results and ROI scaling.", sticker: "ROI", img: S7 },
+  { id: "07", title: "Performance Marketing", desc: "Data-driven results and ROI scaling.", sticker: "ROI", img: S7 },
   { id: "08", title: "Public Relations", desc: "Strategic visibility and brand authority.", sticker: "PR", img: S8 },
   { id: "09", title: "Digital Marketing", desc: "Holistic strategies for the modern market.", sticker: "AD-LAB", img: S9 },
 ];
@@ -55,7 +55,7 @@ export default function Services() {
 
             {/* 3. Changed text-gray-400 to text-gray-600 */}
             <p className="text-gray-600 text-lg leading-relaxed max-w-xl">
-              Beyond Creatives works with brands and creators to attract the right
+              Beyond Creative works with brands and creators to attract the right
               audience, elevate their visual presence, and turn ideas into
               high-impact content. From strategy to execution, we guide you
               through every step.
